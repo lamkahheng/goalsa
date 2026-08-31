@@ -1,4 +1,4 @@
-import { createGoal } from "../repositories/goalRepository.js";
+import { createGoal, findAllGoals } from "../repositories/goalRepository.js";
 
 export const createGoalHandler = async (req, res, next) => {
   const newGoal = {
@@ -16,6 +16,15 @@ export const createGoalHandler = async (req, res, next) => {
     const createdGoal = await createGoal(newGoal);
     res.status(201).json(createdGoal);
   } catch (error) {
-    next(error);
+    return next(error);
+  }
+};
+
+export const getGoalsHandler = async (req, res, next) => {
+  try {
+    const goals = await findAllGoals();
+    res.status(200).json(goals);
+  } catch (error) {
+    return next(error);
   }
 };

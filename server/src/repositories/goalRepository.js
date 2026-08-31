@@ -8,3 +8,7 @@ export const createGoal = async (newGoal) => {
     },
   });
 };
+
+export const findAllGoals = async () => {
+  return await prisma.goal.findMany();
+};
