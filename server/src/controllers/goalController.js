@@ -1,3 +1,4 @@
+import { AppError } from "../errors/AppError.js";
 import {
   createGoal,
   findAllGoals,
@@ -11,9 +12,7 @@ export const createGoalHandler = async (req, res, next) => {
   };
 
   if (!newGoal.title) {
-    const error = new Error("Please include a title");
-    error.status = 400;
-    return next(error);
+    return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
   }
 
   try {
@@ -40,9 +39,13 @@ export const getGoalByIdHandler = async (req, res, next) => {
     const goal = await findGoalById(goalId);
 
     if (!goal) {
-      const error = new Error(`A goal with thr id of ${goalId} was not found`);
-      error.status = 404;
-      return next(error);
+      return next(
+        new AppError(
+          404,
+          "GOAL_NOT_FOUND",
+          "The requested goal was not found.",
+        ),
+      );
     }
 
     res.status(200).json(goal);

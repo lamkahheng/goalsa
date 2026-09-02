@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { errorHandler } from "../errors/errorHandler";
 
 export const CreateGoalPage = ({ createGoal }) => {
   const [title, setTitle] = useState("");
@@ -8,19 +9,20 @@ export const CreateGoalPage = ({ createGoal }) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
+    if (!title) {
+      return toast.error("Please include a title.");
+    }
+
     const newGoal = {
       title: title,
       description: description,
     };
 
     try {
-      const data = await createGoal(newGoal);
-      toast.success(`${data.title} is successfully created.`);
+      await createGoal(newGoal);
+      toast.success("Goal successfully created.");
     } catch (error) {
-      const message = error.message.includes("HTTP Error")
-        ? "Server error. Please try again."
-        : "Connection failed.";
-      toast.error(message);
+      errorHandler(error);
     }
   };
 
