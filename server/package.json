@@ -23,7 +23,8 @@
     "esbuild@0.28.2": true
   },
   "overrides": {
-    "deepmerge-ts": "^8.0.0"
+    "deepmerge-ts": "^8.0.0",
+    "mysql2": "^3.23.1"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
