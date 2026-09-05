@@ -7,6 +7,7 @@ import {
 import { MainLayout } from "./layouts/MainLayout";
 import { CreateGoalPage } from "./pages/CreateGoalPage";
 import { createGoal } from "./api/goalsApi";
+import { GoalPage } from "./pages/GoalPage";
 
 export const App = () => {
   const router = createBrowserRouter(
@@ -16,6 +17,7 @@ export const App = () => {
           path="/goals/new"
           element={<CreateGoalPage createGoal={createGoal} />}
         />
+        <Route path="/goals/:id" element={<GoalPage />}></Route>
       </Route>,
     ),
   );

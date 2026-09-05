@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { errorHandler } from "../errors/errorHandler";
 
 export const CreateGoalPage = ({ createGoal }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const navigate = useNavigate();
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -19,8 +22,9 @@ export const CreateGoalPage = ({ createGoal }) => {
     };
 
     try {
-      await createGoal(newGoal);
+      const createdGoal = await createGoal(newGoal);
       toast.success("Goal successfully created.");
+      navigate(`/goals/${createdGoal.id}`);
     } catch (error) {
       errorHandler(error);
     }
