@@ -32,40 +32,47 @@ export const CreateGoalPage = ({ createGoal }) => {
 
   return (
     <>
-      <div className="w-2xl m-auto py-12">
+      <div className="w-xl m-auto py-12">
         <form onSubmit={submitForm}>
           <h2 className="text-3xl mb-4">Create New Goal</h2>
 
-          <div className="flex flex-col">
-            <div className="mb-4">
-              <label className="block">Title</label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                className="w-full border"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
+          <fieldset className="fieldset">
+            <label
+              className="label text-base-content text-base"
+              htmlFor="title"
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              className="input border-base-content"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
 
-            <div className="mb-4">
-              <label className="block">Description</label>
-              <textarea
-                name="description"
-                id="description"
-                className="w-full border"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
+            <label
+              className="label text-base-content text-base"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <textarea
+              name="description"
+              id="description"
+              className="textarea border-base-content"
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
 
             <div>
-              <button type="submit" className="bg-cyan-300 w-24 py-2 border">
+              <button type="submit" className="btn btn-primary mt-4">
                 Create
               </button>
             </div>
-          </div>
+          </fieldset>
         </form>
       </div>
     </>

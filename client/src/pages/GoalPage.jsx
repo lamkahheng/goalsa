@@ -18,6 +18,11 @@ export const GoalPage = () => {
 
   return (
     <>
+      <input
+        type="checkbox"
+        value="synthwave"
+        className="toggle theme-controller"
+      />
       <div>
         <p>{title}</p>
         <p>{description}</p>
