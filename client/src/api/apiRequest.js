@@ -1,15 +1,20 @@
 import { ApiError } from "../errors/ApiError";
 
-export const fetchHandler = async (apiUrl, method, reqBody) => {
+export const apiRequest = async ({ url, method = "GET", body }) => {
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  if (body !== undefined && body !== null) {
+    options.body = JSON.stringify(body);
+  }
+
   let res;
   try {
-    res = await fetch(apiUrl, {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reqBody),
-    });
+    res = await fetch(url, options);
   } catch (error) {
     throw new Error("NETWORK_ERROR", { cause: error });
   }
