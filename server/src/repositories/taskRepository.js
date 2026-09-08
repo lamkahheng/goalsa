@@ -31,10 +31,11 @@ export const updateTask = async (editedTask) => {
   });
 };
 
-// export const deleteGoal = async (goalId) => {
-//   return await prisma.goal.delete({
-//     where: {
-//       id: goalId,
-//     },
-//   });
-// };
+export const deleteTask = async (taskId, goalId) => {
+  return await prisma.task.delete({
+    where: {
+      id: taskId,
+      goalId: goalId,
+    },
+  });
+};

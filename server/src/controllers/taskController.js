@@ -4,7 +4,7 @@ import {
   findAllTasks,
   findTaskById,
   updateTask,
-  // deleteGoal,
+  deleteTask,
 } from "../repositories/taskRepository.js";
 import { findGoalById } from "../repositories/goalRepository.js";
 
@@ -123,29 +123,30 @@ export const updateTaskHandler = async (req, res, next) => {
   }
 };
 
-// export const deleteGoalHandler = async (req, res, next) => {
-//   const goalId = req.params.id;
+export const deleteTaskHandler = async (req, res, next) => {
+  const taskId = req.params.id;
+  const goalId = req.query.goalId;
 
-//   try {
-//     const goal = await findGoalById(goalId);
+  try {
+    const task = await findTaskById(taskId, goalId);
 
-//     if (!goal) {
-//       return next(
-//         new AppError(
-//           404,
-//           "GOAL_NOT_FOUND",
-//           "The requested goal was not found.",
-//         ),
-//       );
-//     }
-//   } catch (error) {
-//     return next(error);
-//   }
+    if (!task) {
+      return next(
+        new AppError(
+          404,
+          "TASK_NOT_FOUND",
+          "The requested task was not found.",
+        ),
+      );
+    }
+  } catch (error) {
+    return next(error);
+  }
 
-//   try {
-//     const deletedGoal = await deleteGoal(goalId);
-//     res.status(200).json(deletedGoal);
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+  try {
+    const deletedTask = await deleteTask(taskId, goalId);
+    res.status(200).json(deletedTask);
+  } catch (error) {
+    return next(error);
+  }
+};

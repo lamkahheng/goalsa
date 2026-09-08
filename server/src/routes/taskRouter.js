@@ -4,7 +4,7 @@ import {
   getTasksHandler,
   getTaskByIdHandler,
   updateTaskHandler,
-  // deleteGoalHandler,
+  deleteTaskHandler,
 } from "../controllers/taskController.js";
 
 export const taskRouter = express.Router();
@@ -21,5 +21,5 @@ taskRouter.get("/:id", getTaskByIdHandler);
 // Update task
 taskRouter.put("/:id", updateTaskHandler);
 
-// // Delete goal
-// taskRouter.delete("/:id", deleteGoalHandler);
+// Delete task
+taskRouter.delete("/:id", deleteTaskHandler);
