@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { toast } from "react-toastify";
 import { errorHandler } from "../errors/errorHandler";
 
@@ -34,6 +34,10 @@ export const CreateGoalPage = ({ createGoal }) => {
     <>
       <div className="w-xl m-auto py-12">
         <form onSubmit={submitForm}>
+          <Link to={"/goals"} className="link link-hover cursor-default">
+            Back
+          </Link>
+
           <h2 className="text-3xl mb-4">Create New Goal</h2>
 
           <fieldset className="fieldset">

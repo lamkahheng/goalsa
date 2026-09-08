@@ -78,7 +78,7 @@ export const Sidebar = ({ children }) => {
                 <Link
                   to={"/goals/new"}
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right cursor-default"
-                  data-tip="Homepage"
+                  data-tip="Create New Goal"
                 >
                   {/* Home icon */}
                   <svg
