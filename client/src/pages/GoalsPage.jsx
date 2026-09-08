@@ -27,7 +27,7 @@ export const GoalsPage = () => {
     <>
       <h2 className="text-4xl p-4 pl-10">All Goals</h2>
 
-      <Link to={"/goals/new"}>
+      <Link to={"/goals/new"} className="cursor-default">
         <button className="btn btn-primary mt-4 cursor-default m-6">
           Create New Goal
         </button>
