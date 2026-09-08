@@ -22,13 +22,13 @@ export const getTaskById = async ({ taskId, goalId }) => {
   });
 };
 
-// export const updateGoal = async (editedGoal) => {
-//   return await apiRequest({
-//     url: `/api/goals/${editedGoal.id}`,
-//     method: "PUT",
-//     body: editedGoal,
-//   });
-// };
+export const updateTask = async (editedTask) => {
+  return await apiRequest({
+    url: `/api/tasks/${editedTask.id}`,
+    method: "PUT",
+    body: editedTask,
+  });
+};
 
 // export const deleteGoal = async (id) => {
 //   return await apiRequest({
