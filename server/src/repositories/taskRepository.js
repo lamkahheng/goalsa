@@ -24,12 +24,12 @@ export const findTaskById = async (taskId, goalId) => {
   });
 };
 
-// export const updateGoal = async (editedGoal) => {
-//   return await prisma.goal.update({
-//     where: { id: editedGoal.id },
-//     data: { title: editedGoal.title, description: editedGoal.description },
-//   });
-// };
+export const updateTask = async (editedTask) => {
+  return await prisma.task.update({
+    where: { id: editedTask.id, goalId: editedTask.goalId },
+    data: { title: editedTask.title, description: editedTask.description },
+  });
+};
 
 // export const deleteGoal = async (goalId) => {
 //   return await prisma.goal.delete({

@@ -3,7 +3,7 @@ import {
   createTaskHandler,
   getTasksHandler,
   getTaskByIdHandler,
-  // updateGoalHandler,
+  updateTaskHandler,
   // deleteGoalHandler,
 } from "../controllers/taskController.js";
 
@@ -18,8 +18,8 @@ taskRouter.get("/", getTasksHandler);
 // Get task by id
 taskRouter.get("/:id", getTaskByIdHandler);
 
-// // Update goal
-// taskRouter.put("/:id", updateGoalHandler);
+// Update task
+taskRouter.put("/:id", updateTaskHandler);
 
 // // Delete goal
 // taskRouter.delete("/:id", deleteGoalHandler);

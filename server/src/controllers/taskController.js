@@ -3,7 +3,7 @@ import {
   createTask,
   findAllTasks,
   findTaskById,
-  // updateGoal,
+  updateTask,
   // deleteGoal,
 } from "../repositories/taskRepository.js";
 import { findGoalById } from "../repositories/goalRepository.js";
@@ -87,40 +87,41 @@ export const getTaskByIdHandler = async (req, res, next) => {
   }
 };
 
-// export const updateGoalHandler = async (req, res, next) => {
-//   const editedGoal = {
-//     id: req.body.id,
-//     title: req.body.title,
-//     description: req.body.description,
-//   };
+export const updateTaskHandler = async (req, res, next) => {
+  const editedTask = {
+    id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+    goalId: req.body.goalId,
+  };
 
-//   try {
-//     const goal = await findGoalById(editedGoal.id);
+  if (!editedTask.title) {
+    return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
+  }
 
-//     if (!goal) {
-//       return next(
-//         new AppError(
-//           404,
-//           "GOAL_NOT_FOUND",
-//           "The requested goal was not found.",
-//         ),
-//       );
-//     }
-//   } catch (error) {
-//     return next(error);
-//   }
+  try {
+    const task = await findTaskById(editedTask.id, editedTask.goalId);
 
-//   if (!editedGoal.title) {
-//     return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
-//   }
+    if (!task) {
+      return next(
+        new AppError(
+          404,
+          "TASK_NOT_FOUND",
+          "The requested task was not found.",
+        ),
+      );
+    }
+  } catch (error) {
+    return next(error);
+  }
 
-//   try {
-//     const updatedGoal = await updateGoal(editedGoal);
-//     res.status(200).json(updatedGoal);
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+  try {
+    const updatedTask = await updateTask(editedTask);
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 // export const deleteGoalHandler = async (req, res, next) => {
 //   const goalId = req.params.id;
