@@ -3,6 +3,7 @@ import { getAllGoals } from "../api/goalsApi";
 import { useState, useEffect } from "react";
 import { Spinner } from "../components/Spinner";
 import { Link } from "react-router";
+import { errorHandler } from "../errors/errorHandler";
 
 export const GoalsPage = () => {
   const [goals, setGoals] = useState([]);
@@ -10,10 +11,14 @@ export const GoalsPage = () => {
 
   useEffect(() => {
     const fetchGoals = async () => {
-      const data = await getAllGoals();
-      setGoals(data);
-
-      setLoading(false);
+      try {
+        const data = await getAllGoals();
+        setGoals(data);
+      } catch (error) {
+        errorHandler(error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchGoals();
   }, []);
