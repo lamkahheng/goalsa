@@ -3,6 +3,7 @@ import {
   createGoalHandler,
   getGoalsHandler,
   getGoalByIdHandler,
+  updateGoalHandler,
 } from "../controllers/goalController.js";
 
 export const goalRouter = express.Router();
@@ -15,3 +16,6 @@ goalRouter.get("/", getGoalsHandler);
 
 // Real goal by id
 goalRouter.get("/:id", getGoalByIdHandler);
+
+// Update goal
+goalRouter.put("/:id", updateGoalHandler);

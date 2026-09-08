@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import { getGoalById } from "../api/goalsApi";
 
 export const GoalPage = () => {
@@ -18,9 +18,23 @@ export const GoalPage = () => {
 
   return (
     <>
-      <div>
-        <p>{title}</p>
-        <p>{description}</p>
+      <div className="w-xl m-auto py-12">
+        <h2 className="text-3xl mb-4">Goal</h2>
+
+        <p className="text-base">{title}</p>
+
+        <p className="text-base">{description}</p>
+
+        <div>
+          <Link to={`/goals/edit/${id}`}>
+            <button
+              type="submit"
+              className="btn btn-primary mt-4 cursor-default"
+            >
+              Edit
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );

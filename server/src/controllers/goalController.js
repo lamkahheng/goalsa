@@ -3,6 +3,7 @@ import {
   createGoal,
   findAllGoals,
   findGoalById,
+  updateGoal,
 } from "../repositories/goalRepository.js";
 
 export const createGoalHandler = async (req, res, next) => {
@@ -49,6 +50,41 @@ export const getGoalByIdHandler = async (req, res, next) => {
     }
 
     res.status(200).json(goal);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const updateGoalHandler = async (req, res, next) => {
+  const editedGoal = {
+    id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+  };
+
+  try {
+    const goal = await findGoalById(editedGoal.id);
+
+    if (!goal) {
+      return next(
+        new AppError(
+          404,
+          "GOAL_NOT_FOUND",
+          "The requested goal was not found.",
+        ),
+      );
+    }
+  } catch (error) {
+    return next(error);
+  }
+
+  if (!editedGoal.title) {
+    return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
+  }
+
+  try {
+    const updatedGoal = await updateGoal(editedGoal);
+    res.status(200).json(updatedGoal);
   } catch (error) {
     return next(error);
   }

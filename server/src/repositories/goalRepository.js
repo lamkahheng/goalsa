@@ -18,3 +18,10 @@ export const findGoalById = async (goalId) => {
     where: { id: goalId },
   });
 };
+
+export const updateGoal = async (editedGoal) => {
+  return await prisma.goal.update({
+    where: { id: editedGoal.id },
+    data: { title: editedGoal.title, description: editedGoal.description },
+  });
+};

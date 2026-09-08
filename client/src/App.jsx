@@ -9,6 +9,7 @@ import { CreateGoalPage } from "./pages/CreateGoalPage";
 import { createGoal } from "./api/goalsApi";
 import { GoalPage } from "./pages/GoalPage";
 import { GoalsPage } from "./pages/GoalsPage";
+import { EditGoalPage } from "./pages/EditGoalPage";
 
 export const App = () => {
   const router = createBrowserRouter(
@@ -20,6 +21,7 @@ export const App = () => {
         />
         <Route path="/goals/:id" element={<GoalPage />}></Route>
         <Route path="/goals" element={<GoalsPage />}></Route>
+        <Route path="/goals/edit/:id" element={<EditGoalPage />}></Route>
       </Route>,
     ),
   );
