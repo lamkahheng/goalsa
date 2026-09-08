@@ -2,6 +2,7 @@ import { Goal } from "../components/Goal";
 import { getAllGoals } from "../api/goalsApi";
 import { useState, useEffect } from "react";
 import { Spinner } from "../components/Spinner";
+import { Link } from "react-router";
 
 export const GoalsPage = () => {
   const [goals, setGoals] = useState([]);
@@ -20,6 +21,13 @@ export const GoalsPage = () => {
   return (
     <>
       <h2 className="text-4xl p-4 pl-10">All Goals</h2>
+
+      <Link to={"/goals/new"}>
+        <button className="btn btn-primary mt-4 cursor-default m-6">
+          Create New Goal
+        </button>
+      </Link>
+
       {loading ? (
         <Spinner loading={loading} />
       ) : (
