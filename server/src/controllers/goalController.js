@@ -63,6 +63,10 @@ export const updateGoalHandler = async (req, res, next) => {
     description: req.body.description,
   };
 
+  if (!editedGoal.title) {
+    return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
+  }
+
   try {
     const goal = await findGoalById(editedGoal.id);
 
@@ -77,10 +81,6 @@ export const updateGoalHandler = async (req, res, next) => {
     }
   } catch (error) {
     return next(error);
-  }
-
-  if (!editedGoal.title) {
-    return next(new AppError(400, "TITLE_REQUIRED", "Please include a title."));
   }
 
   try {
