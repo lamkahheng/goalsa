@@ -12,10 +12,10 @@ export const goalRouter = express.Router();
 // Create goal
 goalRouter.post("/", createGoalHandler);
 
-// Read all goals
+// Get all goals
 goalRouter.get("/", getGoalsHandler);
 
-// Real goal by id
+// Get goal by id
 goalRouter.get("/:id", getGoalByIdHandler);
 
 // Update goal
