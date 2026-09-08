@@ -27,7 +27,14 @@ export const CreateTaskModal = ({ goalId, onTaskCreated }) => {
       }
     } catch (error) {
       errorHandler(error);
+    } finally {
+      onDialogClosed();
     }
+  };
+
+  const onDialogClosed = () => {
+    setTitle("");
+    setDescription("");
   };
 
   return (
@@ -82,7 +89,12 @@ export const CreateTaskModal = ({ goalId, onTaskCreated }) => {
               >
                 Create
               </button>
-              <button className="btn mt-4 cursor-default ml-4">Cancel</button>
+              <button
+                className="btn mt-4 cursor-default ml-4"
+                onClick={onDialogClosed}
+              >
+                Cancel
+              </button>
             </form>
           </div>
         </div>

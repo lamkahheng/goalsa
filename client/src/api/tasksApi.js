@@ -30,9 +30,9 @@ export const updateTask = async (editedTask) => {
   });
 };
 
-// export const deleteGoal = async (id) => {
-//   return await apiRequest({
-//     url: `/api/goals/${id}`,
-//     method: "DELETE",
-//   });
-// };
+export const deleteTask = async ({ taskId, goalId }) => {
+  return await apiRequest({
+    url: `/api/tasks/${taskId}?goalId=${goalId}`,
+    method: "DELETE",
+  });
+};

@@ -4,15 +4,20 @@ import { errorHandler } from "../errors/errorHandler";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { updateTask } from "../api/tasksApi";
+import { DeleteTaskModal } from "./DeleteTaskModal";
 
-export const Task = ({ taskId, goalId, onTaskUpdated }) => {
+export const Task = ({
+  taskId,
+  goalId,
+  onTaskUpdated,
+  onTaskDeleted,
+  setTaskId,
+}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    if (!taskId) return;
-
     const fetchTask = async () => {
       try {
         const task = await getTaskById({ taskId, goalId });
@@ -49,81 +54,87 @@ export const Task = ({ taskId, goalId, onTaskUpdated }) => {
     }
   };
 
-  return (
-    <>
-      <div className="p-8">
-        {edit ? (
-          <>
-            <button onClick={() => setEdit(false)}>
-              <Link className="link link-hover cursor-default">Back</Link>
-            </button>
-            <form onSubmit={submitForm}>
-              <h2 className="text-3xl mb-4 mt-2">Update Goal</h2>
-              <fieldset className="fieldset">
-                <label
-                  className="label text-base-content text-base"
-                  htmlFor="title"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  className="input border-base-content w-xs"
-                  placeholder="Title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
+  if (edit && taskId) {
+    return (
+      <>
+        <div className="p-8">
+          <button onClick={() => setEdit(false)}>
+            <Link className="link link-hover cursor-default">Back</Link>
+          </button>
+          <form onSubmit={submitForm}>
+            <h2 className="text-3xl mb-4 mt-2">Update Goal</h2>
+            <fieldset className="fieldset">
+              <label
+                className="label text-base-content text-base"
+                htmlFor="title"
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                className="input border-base-content w-xs"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
 
-                <label
-                  className="label text-base-content text-base"
-                  htmlFor="description"
-                >
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  id="description"
-                  className="textarea border-base-content w-xs"
-                  placeholder="Description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+              <label
+                className="label text-base-content text-base"
+                htmlFor="description"
+              >
+                Description
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                className="textarea border-base-content w-xs"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
 
-                <p className="text-base">id: {taskId}</p>
-                <p className="text-base">goalId: {goalId}</p>
-
-                <div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary mt-4 cursor-default"
-                  >
-                    Update
-                  </button>
-                </div>
-              </fieldset>
-            </form>
-          </>
-        ) : (
-          <>
-            <h2 className="text-3xl mb-4 mt-2">{title}</h2>
-
-            <p className="text-base">{description}</p>
-            <div>
-              <Link>
+              <div>
                 <button
-                  onClick={() => setEdit(true)}
+                  type="submit"
                   className="btn btn-primary mt-4 cursor-default"
                 >
-                  Edit
+                  Update
                 </button>
-              </Link>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </>
+    );
+  }
 
-              {/* <DeleteGoalModal /> */}
-            </div>
-          </>
-        )}
-      </div>
-    </>
-  );
+  if (taskId)
+    return (
+      <>
+        <div className="p-8">
+          <h2 className="text-3xl mb-4 mt-2">{title}</h2>
+
+          <p className="text-base">{description}</p>
+
+          <div>
+            <Link>
+              <button
+                onClick={() => setEdit(true)}
+                className="btn btn-primary mt-4 cursor-default"
+              >
+                Edit
+              </button>
+            </Link>
+
+            <DeleteTaskModal
+              taskId={taskId}
+              goalId={goalId}
+              onTaskDeleted={onTaskDeleted}
+              setTaskId={setTaskId}
+            />
+          </div>
+        </div>
+      </>
+    );
 };

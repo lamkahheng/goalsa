@@ -95,7 +95,13 @@ export const GoalPage = () => {
           )}
         </div>
 
-        <Task taskId={taskId} goalId={id} onTaskUpdated={fetchTasks} />
+        <Task
+          taskId={taskId}
+          goalId={id}
+          onTaskUpdated={fetchTasks}
+          onTaskDeleted={fetchTasks}
+          setTaskId={setTaskId}
+        />
       </div>
     </>
   );
