@@ -68,7 +68,10 @@ export const CreateGoalPage = ({ createGoal }) => {
             ></textarea>
 
             <div>
-              <button type="submit" className="btn btn-primary mt-4">
+              <button
+                type="submit"
+                className="btn btn-primary mt-4 cursor-default"
+              >
                 Create
               </button>
             </div>
