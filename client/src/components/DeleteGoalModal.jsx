@@ -21,11 +21,11 @@ export const DeleteGoalModal = ({ id }) => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         className="btn btn-soft btn-error mt-4 cursor-default ml-4"
-        onClick={() => document.getElementById("delete_modal").showModal()}
+        onClick={() => document.getElementById("delete_goal_modal").showModal()}
       >
         Delete
       </button>
-      <dialog id="delete_modal" className="modal">
+      <dialog id="delete_goal_modal" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Delete Confirmation</h3>
           <p className="py-4">Are you sure you want to delete this goal?</p>
