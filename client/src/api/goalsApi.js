@@ -10,3 +10,10 @@ export const getGoalById = async (id) => {
     method: "GET",
   });
 };
+
+export const getAllGoals = async () => {
+  return await apiRequest({
+    url: "/api/goals",
+    method: "GET",
+  });
+};
