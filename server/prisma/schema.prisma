@@ -14,8 +14,22 @@ model Goal {
   status      Status   @default(NOT_COMPLETED)
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
+  tasks       Task[]
 
   @@map("goals")
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  status      Status   @default(NOT_COMPLETED)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  goal        Goal     @relation(fields: [goalId], references: [id])
+  goalId      String
+
+  @@map("tasks")
 }
 
 enum Status {
