@@ -20,7 +20,11 @@ export const GoalPage = () => {
   return (
     <>
       <div className="w-xl m-auto py-12">
-        <h2 className="text-3xl mb-4">Goal</h2>
+        <Link to={"/goals"} className="link link-hover cursor-default">
+          Back
+        </Link>
+
+        <h2 className="text-3xl mb-4 mt-2">Goal</h2>
 
         <p className="text-base">{title}</p>
 

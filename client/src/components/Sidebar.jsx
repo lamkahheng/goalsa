@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export const Sidebar = ({ children }) => {
   return (
     <>
@@ -31,7 +33,7 @@ export const Sidebar = ({ children }) => {
                 <path d="M14 10l2 2l-2 2"></path>
               </svg>
             </label>
-            <div className="px-4">Navbar Title</div>
+            <div className="px-4">Goalsa</div>
           </nav>
           {/* Page content here */}
           {children}
@@ -48,8 +50,9 @@ export const Sidebar = ({ children }) => {
             <ul className="menu w-full grow">
               {/* List item */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                <Link
+                  to={"/goals"}
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right cursor-default"
                   data-tip="Homepage"
                 >
                   {/* Home icon */}
@@ -67,13 +70,13 @@ export const Sidebar = ({ children }) => {
                     <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   </svg>
                   <span className="is-drawer-close:hidden">Homepage</span>
-                </button>
+                </Link>
               </li>
 
               {/* List item */}
               <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                <Link
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right cursor-default"
                   data-tip="Settings"
                 >
                   {/* Settings icon */}
@@ -93,7 +96,7 @@ export const Sidebar = ({ children }) => {
                     <circle cx="7" cy="7" r="3"></circle>
                   </svg>
                   <span className="is-drawer-close:hidden">Settings</span>
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

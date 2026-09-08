@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { getGoalById, updateGoal } from "../api/goalsApi";
 import { toast } from "react-toastify";
 import { errorHandler } from "../errors/errorHandler";
@@ -45,8 +45,11 @@ export const EditGoalPage = () => {
   return (
     <>
       <div className="w-xl m-auto py-12">
+        <Link to={`/goals/${id}`} className="link link-hover cursor-default">
+          Back
+        </Link>
         <form onSubmit={submitForm}>
-          <h2 className="text-3xl mb-4">Update Goal</h2>
+          <h2 className="text-3xl mb-4 mt-2">Update Goal</h2>
 
           <fieldset className="fieldset">
             <label
