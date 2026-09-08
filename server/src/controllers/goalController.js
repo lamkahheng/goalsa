@@ -4,6 +4,7 @@ import {
   findAllGoals,
   findGoalById,
   updateGoal,
+  deleteGoal,
 } from "../repositories/goalRepository.js";
 
 export const createGoalHandler = async (req, res, next) => {
@@ -85,6 +86,33 @@ export const updateGoalHandler = async (req, res, next) => {
   try {
     const updatedGoal = await updateGoal(editedGoal);
     res.status(200).json(updatedGoal);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const deleteGoalHandler = async (req, res, next) => {
+  const goalId = req.params.id;
+
+  try {
+    const goal = await findGoalById(goalId);
+
+    if (!goal) {
+      return next(
+        new AppError(
+          404,
+          "GOAL_NOT_FOUND",
+          "The requested goal was not found.",
+        ),
+      );
+    }
+  } catch (error) {
+    return next(error);
+  }
+
+  try {
+    const deletedGoal = await deleteGoal(goalId);
+    res.status(200).json(deletedGoal);
   } catch (error) {
     return next(error);
   }

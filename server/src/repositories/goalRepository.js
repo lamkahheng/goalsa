@@ -25,3 +25,11 @@ export const updateGoal = async (editedGoal) => {
     data: { title: editedGoal.title, description: editedGoal.description },
   });
 };
+
+export const deleteGoal = async (goalId) => {
+  return await prisma.goal.delete({
+    where: {
+      id: goalId,
+    },
+  });
+};

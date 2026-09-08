@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router";
 import { getGoalById } from "../api/goalsApi";
+import { DeleteGoalModal } from "../components/DeleteGoalModal";
 
 export const GoalPage = () => {
   const [title, setTitle] = useState("");
@@ -27,13 +28,12 @@ export const GoalPage = () => {
 
         <div>
           <Link to={`/goals/edit/${id}`}>
-            <button
-              type="submit"
-              className="btn btn-primary mt-4 cursor-default"
-            >
+            <button className="btn btn-primary mt-4 cursor-default">
               Edit
             </button>
           </Link>
+
+          <DeleteGoalModal id={id} />
         </div>
       </div>
     </>

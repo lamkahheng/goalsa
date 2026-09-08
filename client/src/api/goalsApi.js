@@ -29,3 +29,10 @@ export const updateGoal = async (editedGoal) => {
     body: editedGoal,
   });
 };
+
+export const deleteGoal = async (id) => {
+  return await apiRequest({
+    url: `/api/goals/${id}`,
+    method: "DELETE",
+  });
+};
