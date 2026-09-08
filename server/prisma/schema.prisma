@@ -27,7 +27,7 @@ model Task {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
   goal        Goal     @relation(fields: [goalId], references: [id])
-  goalId      String
+  goalId      String   @map("goal_id")
 
   @@map("tasks")
 }
